@@ -42,6 +42,7 @@ This file represents the authoritative structural index of the Venture Operating
 ## 02-Problem
 - 00-Problem-Definition.md
 - 01-Problem-Structuring.md
+- 02-Problem-Validation-Criteria.md
 
 ---
 
@@ -74,5 +75,5 @@ This map is strictly derived from REPOSITORY-TREE.md only.
 
 ## SYSTEM UPDATE NOTES
 - Vision layer complete
-- Problem layer expanded with structuring model
-- Observability layer synced after Problem update
+- Problem layer fully initialized (definition + structuring + validation)
+- Observability layer synced after Problem expansion

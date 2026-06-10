@@ -1,22 +1,15 @@
 # Venture Playbook Repository Map
 
+This file represents the authoritative structural index of the Venture Operating System (VOS) repository.
+
+---
+
 ## AI NAVIGATION RULES
 - Entry point: REPOSITORY-MAP.md
 - Always consult REPOSITORY-TREE.txt
 - Never assume files beyond tree
 
 ---
-
-## 00-Principles
-- 00-Overview.md
-- 01-Core-Principles.md
-- 02-Decision-Principles.md
-- 03-Validation-Principles.md
-- 04-Execution-Principles.md
-- 05-AI-Collaboration-Principles.md
-- 06-Complexity-Principles.md
-- 07-Anti-Patterns.md
-- 08-Principles-Checklist.md
 
 ## 000-Governance
 - 00-Vision.md
@@ -31,6 +24,18 @@
 - 09-System-State-Model.md
 - 10-Artifact-Registry.md
 - 11-Runtime-Boundary-Policy.md
+
+---
+
+## 00-Principles
+- AI-Execution-Protocol.md
+
+---
+
+## 01-Vision
+- 00-System-Vision.md
+
+---
 
 ## Other Domains (from REPOSITORY-TREE)
 - AI-System
@@ -52,5 +57,13 @@
 - 10-Learning
 - 08-MVP
 
+---
+
 ## RULE
 This map is strictly derived from REPOSITORY-TREE.txt only.
+
+---
+
+## SYSTEM UPDATE NOTES
+- Vision layer initialized with System Vision artifact
+- Observability layer synced with Governance + Vision structure

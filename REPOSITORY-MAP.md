@@ -6,7 +6,7 @@ This file represents the authoritative structural index of the Venture Operating
 
 ## AI NAVIGATION RULES
 - Entry point: REPOSITORY-MAP.md
-- Always consult REPOSITORY-TREE.txt
+- Always consult REPOSITORY-TREE.md
 - Never assume files beyond tree
 
 ---
@@ -34,6 +34,7 @@ This file represents the authoritative structural index of the Venture Operating
 
 ## 01-Vision
 - 00-System-Vision.md
+- 01-Scope-and-NonGoals.md
 
 ---
 
@@ -60,10 +61,11 @@ This file represents the authoritative structural index of the Venture Operating
 ---
 
 ## RULE
-This map is strictly derived from REPOSITORY-TREE.txt only.
+This map is strictly derived from REPOSITORY-TREE.md only.
 
 ---
 
 ## SYSTEM UPDATE NOTES
 - Vision layer initialized with System Vision artifact
-- Observability layer synced with Governance + Vision structure
+- Scope and Non-Goals added to Vision layer
+- Observability layer synced after Vision expansion

@@ -39,6 +39,12 @@ This file represents the authoritative structural index of the Venture Operating
 
 ---
 
+## 02-Problem
+- 00-Problem-Definition.md
+- 01-Problem-Structuring.md
+
+---
+
 ## Other Domains (from REPOSITORY-TREE)
 - AI-System
 - 04-Product
@@ -67,7 +73,6 @@ This map is strictly derived from REPOSITORY-TREE.md only.
 ---
 
 ## SYSTEM UPDATE NOTES
-- Vision layer initialized with System Vision artifact
-- Scope and Non-Goals added
-- Operating Assumptions added
-- Observability layer synced after Vision expansion
+- Vision layer complete
+- Problem layer expanded with structuring model
+- Observability layer synced after Problem update

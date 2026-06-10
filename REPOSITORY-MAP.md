@@ -46,6 +46,11 @@ This file represents the authoritative structural index of the Venture Operating
 
 ---
 
+## 03-Validation
+- 00-Validation-Framework.md
+
+---
+
 ## Other Domains (from REPOSITORY-TREE)
 - AI-System
 - 04-Product
@@ -75,5 +80,6 @@ This map is strictly derived from REPOSITORY-TREE.md only.
 
 ## SYSTEM UPDATE NOTES
 - Vision layer complete
-- Problem layer fully initialized (definition + structuring + validation)
-- Observability layer synced after Problem expansion
+- Problem layer complete
+- Validation layer initialized
+- Observability layer synced after Validation initialization

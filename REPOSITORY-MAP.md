@@ -35,6 +35,7 @@ This file represents the authoritative structural index of the Venture Operating
 ## 01-Vision
 - 00-System-Vision.md
 - 01-Scope-and-NonGoals.md
+- 02-Operating-Assumptions.md
 
 ---
 
@@ -67,5 +68,6 @@ This map is strictly derived from REPOSITORY-TREE.md only.
 
 ## SYSTEM UPDATE NOTES
 - Vision layer initialized with System Vision artifact
-- Scope and Non-Goals added to Vision layer
+- Scope and Non-Goals added
+- Operating Assumptions added
 - Observability layer synced after Vision expansion

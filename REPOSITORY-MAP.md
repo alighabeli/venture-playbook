@@ -28,6 +28,9 @@
 - 06-Change-Management.md
 - 07-Quality-Checklist.md
 - 08-Glossary.md
+- 09-System-State-Model.md
+- 10-Artifact-Registry.md
+- 11-Runtime-Boundary-Policy.md
 
 ## Other Domains (from REPOSITORY-TREE)
 - AI-System

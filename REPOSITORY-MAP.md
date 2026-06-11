@@ -1,97 +1,138 @@
-# Venture Playbook Repository Map
+# REPOSITORY-MAP.md — Venture-Playbook VOS
 
-This file represents the authoritative structural index of the Venture Operating System (VOS) repository.
+## 1. System Overview
 
----
+Venture-Playbook is a:
 
-## AI NAVIGATION RULES
-- Entry point: REPOSITORY-MAP.md
-- Always consult REPOSITORY-TREE.md
-- Never assume files beyond tree
+Stage-Driven Venture Operating System (SD-VOS)
 
----
+with three primary layers:
 
-## 000-Governance
-- 00-Vision.md
-- 01-Design-Principles.md
-- 02-Versioning-Strategy.md
-- 03-Document-Standards.md
-- 04-Governance-Model.md
-- 05-Review-Process.md
-- 06-Change-Management.md
-- 07-Quality-Checklist.md
-- 08-Glossary.md
-- 09-System-State-Model.md
-- 10-Artifact-Registry.md
-- 11-Runtime-Boundary-Policy.md
+- Lifecycle Stages (execution spine)
+- Governance System (global constraints)
+- Runtime Systems (AI + execution engine)
 
 ---
 
-## 00-Principles
-- AI-Execution-Protocol.md
+## 2. Top-Level Structure
+
+venture-playbook/
+
+├── 00-Principles/ → System axioms, behavioral rules  
+├── 00-System-Spine/ → Cross-layer contracts + traceability core  
+├── 000-Governance-System/ → Governance, evaluation, state rules  
+├── 000-ADRs/ → Architectural decisions (future use)  
+
+├── 01-Vision/ → System definition  
+├── 02-Problem/ → Problem space definition  
+├── 03-Validation/ → Validation framework  
+├── 04-Product/ → Product hypotheses  
+├── 05-Domain-Model/ → Domain abstraction layer  
+├── 06-System-Architecture/ → Structural system design  
+├── 07-Runtime/ → Execution + state machine  
+
+├── 08-MVP/ → MVP definition  
+├── 09-Launch/ → Launch planning  
+├── 10-Learning/ → Learning signals  
+├── 11-Customer-Discovery/ → Customer insights  
+├── 12-PMF/ → Product-market fit  
+├── 13-Growth-Strategy/ → Growth systems  
+├── 14-GTM/ → Go-to-market execution  
+
+├── 15-AI-Runtime/ → AI execution layer  
+
+├── Examples/ → Reference implementations  
+├── Templates/ → Reusable templates  
+├── DOCUMENT-DEPENDENCIES.md  
+├── REPOSITORY-MAP.md  
+├── REPOSITORY-TREE.txt  
+└── _VOS-TEST.md  
 
 ---
 
-## 01-Vision
-- 00-System-Vision.md
-- 01-Scope-and-NonGoals.md
-- 02-Operating-Assumptions.md
+## 3. Layer Model
+
+### Core Spine
+00-System-Spine/
+- Stage-artifact binding
+- Cross-layer traceability
+- Execution contracts
 
 ---
 
-## 02-Problem
-- 00-Problem-Definition.md
-- 01-Problem-Structuring.md
-- 02-Problem-Validation-Criteria.md
+### Governance Layer
+000-Governance-System/
+- Evaluation models
+- State transitions
+- Decision models
+- Quality enforcement
 
 ---
 
-## 03-Validation
-- 00-Validation-Framework.md
+### Principles Layer
+00-Principles/
+- System axioms
+- Decision principles
+- Anti-patterns
+- AI collaboration rules
 
 ---
 
-## 04-Product
-- 00-Product-Hypothesis.md
+### Lifecycle Layer
+02 → 14 stages
+- End-to-end venture lifecycle execution
 
 ---
 
-## 05-Domain-Model
-- 00-Domain-Model.md
+### Runtime Layer
+07-Runtime/ + 15-AI-Runtime/
+- Execution engine
+- State machine
+- AI orchestration
 
 ---
 
-## Other Domains (from REPOSITORY-TREE)
-- AI-System
-- 04-Product
-- Templates
-- 03-Validation
-- 11-Customer-Discovery
-- 14-GTM
-- 01-Vision
-- 000-ADRs
-- 07-Execution
-- 02-Problem
-- Examples
-- 06-Architecture
-- 13-Growth-Strategy
-- 12-PMF
-- 09-Launch
-- 05-Domain-Model
-- 10-Learning
-- 08-MVP
+### Definition Layers
+01-Vision / 05-Domain-Model / 06-System-Architecture
+- System definition and structure
 
 ---
 
-## RULE
-This map is strictly derived from REPOSITORY-TREE.md only.
+### Outcome Layers
+08-MVP → 14-GTM
+- Product and market execution
 
 ---
 
-## SYSTEM UPDATE NOTES
-- Vision layer complete
-- Problem layer complete
-- Validation layer complete
-- Product layer complete
-- Domain Model layer initialized
-- Observability layer synced after Domain Model initialization
+## 4. System Flow
+
+Vision → Problem → Validation → Product → Architecture → Runtime → MVP → Launch → Learning → PMF → Growth → GTM
+
+---
+
+## 5. Cross-Layer Execution Model
+
+Stage → Artifact → Governance Evaluation → State Transition
+
+---
+
+## 6. AI Runtime Role
+
+AI is responsible for:
+- extraction
+- interpretation
+- execution support
+
+NOT:
+- governance authority
+- final decision making
+
+---
+
+## 7. System Identity
+
+Venture-Playbook is a Stage-Driven Venture Operating System with:
+
+- Global Governance Layer
+- AI Runtime Engine
+- Cross-Layer Traceability Spine

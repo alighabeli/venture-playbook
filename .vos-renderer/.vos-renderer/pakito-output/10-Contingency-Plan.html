@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پاکیتو - سند پاکیتو</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --pakito-primary: #00a896;
+            --pakito-secondary: #028090;
+            --pakito-accent: #f0b67f;
+            --pakito-light: #f5f5f5;
+            --pakito-dark: #05668d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .sidebar {
+            background: linear-gradient(180deg, var(--pakito-primary) 0%, var(--pakito-dark) 100%);
+            color: white;
+            min-height: 100vh;
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: III280px;
+            overflow-y: auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .main-content {
+            margin-right: 280px;
+            padding: 20px;
+        }
+        
+        .pakito-header {
+            background: white;
+            border-bottom: 3px solid var(--pakito-secondary);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .document-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+        
+        .meta-panel {
+            background: linear-gradient(135deg, var(--pakito-primary) 0%, var(--pakito-secondary) 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .badge-locked {
+            background-color: #05668d;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .badge-draft {
+            background-color: #f0b67f;
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .badge-stable {
+            background-color: #00a896;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .sidebar-header {
+            padding: 25px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .nav-section {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .nav-section-title {
+            padding: 10px 20px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-section-title:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .nav-links {
+            padding-right: 30px;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 8px 20px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            border-right: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: white;
+            background-color: rgba(255,255,255,0.05);
+            border-right-color: var(--pakito-accent);
+        }
+        
+        .nav-link.active {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            border-right-color: var(--pakito-accent);
+            font-weight: 600;
+        }
+        
+        .generation-time {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            text-align: left;
+            margin-top: 20px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--pakito-dark);
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        
+        h1 {
+            border-bottom: 2px solid var(--pakito-primary);
+            padding-bottom: 10px;
+        }
+        
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background-color: var(--pakito-dark);
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table th {
+            background-color: var(--pakito-primary);
+            color: white;
+            padding: 12px;
+            text-align: right;
+        }
+        
+        table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .alert {
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border-right: 5px solid;
+        }
+        
+        .alert-info {
+            background-color: #e8f4fd;
+            border-right-color: var(--pakito-secondary);
+            color: #2c3e50;
+        }
+        
+        .alert-warning {
+            background-color: #fff3cd;
+            border-right-color: #f0b67f;
+            color: #856404;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            border-right-color: var(--pakito-primary);
+            color: #155724;
+        }
+        
+        .venture-badge {
+            background-color: var(--pakito-accent);
+            color: #333;
+            padding: -3px 10px;
+            border-radius: III15px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="bi bi-droplet"></i> پاکیتو - سیستم مدیریتی</h3>
+            <p class="mb-0" style="color: rgba(255,255,255,0.7); font-size: 0.9em;">پلتفرم شستشوی هوشمند لباس</p>
+        </div>
+        
+        
+    <div class="nav-section">
+        <div class="nav-section-title">
+            <span>مستندات پاکیتو</span>
+            <span class="toggle-icon">+</span>
+        </div>
+        <div class="nav-links" style="display: none;">
+    
+            <a href="../Pakito/00-Principles.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>00 - Principles
+            </a>
+        
+            <a href="../Pakito/00-System-Vision.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>00 - System Vision
+            </a>
+        
+            <a href="../Pakito/02-Problem-Statement.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>02 - Problem Statement
+            </a>
+        
+            <a href="../Pakito/03-Market-Analysis.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>03 - Market Analysis
+            </a>
+        
+            <a href="../Pakito/04-Product.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>04 - Product
+            </a>
+        
+            <a href="../Pakito/05-User-Journey.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>05 - User Journey
+            </a>
+        
+            <a href="../Pakito/06-Data-Model.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>06 - Data Model
+            </a>
+        
+            <a href="../Pakito/07-System-Architecture.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>07 - System Architecture
+            </a>
+        
+            <a href="../Pakito/08-Operations-Logistics.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>08 - Operations Logistics
+            </a>
+        
+            <a href="../Pakito/09-Financials.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>09 - Financials
+            </a>
+        
+            <a href="../Pakito/10-Contingency-Plan.html" class="nav-link active">
+                <i class="bi bi-file-text me-2"></i>10 - Contingency Plan
+            </a>
+        
+            <a href="../Pakito/10-Learning-Loop.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>10 - Learning Loop
+            </a>
+        
+            <a href="../Pakito/12-PMF-Criteria.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>12 - PMF Criteria
+            </a>
+        
+            <a href="../Pakito/13-Growth-Strategy-v2.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>13 - Growth Strategy v2
+            </a>
+        
+            <a href="../Pakito/14-GTM-Plan.html" class="nav-link ">
+                <i class="bi bi-file-text me-2"></i>14 - GTM Plan
+            </a>
+        
+        </div>
+    </div>
+    
+        
+        <div class="generation-time">
+            <small><i class="bi bi-clock"></i> آخرین به‌روزرسانی: 2026-06-12 22:33:50</small>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="pakito-header">
+            <h1>سند پاکیتو</h1>
+            <p class="lead">پلتفرم شستشوی هوشمند لباس</p>
+            <div class="d-flex align-items-center">
+                <i class="bi bi-arrow-repeat me-2"></i>
+                <span>آخرین به‌روزرسانی خودکار: 2026-06-12 22:33:50</span>
+            </div>
+        </div>
+        
+        <div class='alert alert-info'>No metadata available for this document.</div>
+        
+        <div class="document-card">
+            <p>PK  ®^Ì\               word/numbering.xmlíÛnÓ0Çw¨r¿åÐ.+ÕÒiÚ4Bñ ®ã6V}l§Ýx.¸['Á9¹iSZ&5îM¿¿ïïC~­O½º~¤d´ABbÎ"Ç?÷bÇ­"çóÃýÙÔIXg(rt®ç¯®¶3Ñ:n¤-Q9RéÌu%Lò§éÆ%(}+V.b¥gÓ(¼À«'7ð¼Ð©lxädÍ<em>3¡à/U2ãË%¨ºÔ¢O¿eÊEL=º=ÎdSY»ÑcÝtcRlÄ:nöé-`«×²£-q</em>8DRjõ®l4¾×csÑgû}Ö#¡ 3cÓÑ22}ë¾«E+¬vÙ­$}R6½ÇÄSwàõlæ§¸Å-¥2a<Æ&@¨Úã@8\£ø°</p>
+<p>00Ç«^8·bVÐ¤ò 'ë{-\>% E;·Õ¿¹½<Kw¸OqküýÃAxÁ´k Ñãq®Îlúàø0Ðøàú}ÐÏ@¹¹Ãk7®Þd~Ýò}ô×<7·</p>
+<p><ýB°x!;s½ÁTB2:Ú»{«gé!dCtÖÈñ</p>
+<p>EïUBimHäÎËêqTÙ¢Ð£iúõãÑßÁZ%hY§E~Á,Öm¹9¡§wÌí,lUlãÐËc],ªË=×ÓÌç!!Æs#0 y&¤º4¤äI_bQÌ«îoeKÁíûN¤[vt%ðµDÈ	F+>UôZ</p>
+<tr>
+<td>ZÙuUkY-0}¨Â</td>
+<td>hd;u$2FJÔ</td>
+</tr>
+<p>Á+fàÒÂ­Ö-Uÿ%Pøz(</p>
+<p>þdbYÁ°ðýç¡,~hYãÓ°0ZÇÂä$,íya,\É8°,ð$,\xöì8<.OÃÂ¥=;éIX'öì8Ü½Tþlu*°Õ)K­NYluÊ²`«SCY°Õ)Ë­NYÚ,ØêeÁV§,mluêf¡[bEU5ÿ+µW¢ÚÄ-";iÁßÓfÛø/ðü7PKPy÷N  Q,  PK  ®^Ì\               word/settings.xml¥KÚ0O;PÚdBE¦&YdVÈl«Ð«$·d[6TÊÒßÝ_ËM»å×OÎfG¢</p>
+<p>"É"3"ÄTø½?±P`È¤ 8^·_^!Ö:/3sa6e ²Vm¢È phRáÔZ·ÕeÄ¡>Ôj$WÐÒ2jOQÇkÐcdj-6=bÎ)ÒÒÈÂú,</p>
+<tr>
+<td>Hÿ"ô¼]ÈD5'Â¶#M;¦¢ÊæUÿõGÎ_£¦dÃ6®Ðu©±ÒcúÖbO( GSp3C<em>o+Ð{ár÷EkQãµ0lÊA:Ó/k¨O·§Ôó<^ÑI]</td>
+<td>EpQ¶ÖCC>@Ô6 Ø#&ÑàïPáÐÌ¸ÔÎW$La©!ÔÜõÏ&ñU»ì</em>¨ÈH+ÿöCËZí¾</td>
+<td>vö&«û é</td>
+</tr>
+<p>`}àùÈçcÈEs(¾³84Ìi ÍÁxÂ·÷S°Wàv(ÿã>Ö£ÒØ</p>
+<tr>
+<td>dÚ¶î~!<'x¯k²?)ò.×¬Ù¡	¼&¬ÝÃ</td>
+<td>g¥</td>
+</tr>
+<p>Æ¯iÜ»;f\íºûj¬[</p>
+<p>ÈÝÜº¸>$&ÞTk:½>eté"P©.m^&`´¬lâùÖí°»ÛM^¦½-mmigk7!W#çÝ/F-</p>
+<tr>
+<td>ÚßSÐFm´å¨­¶µuÐÖ^«\Ý5£âàÊ^/$c²!øçh¿úzoíPKµB^7O  h  PK  ®^Ì\               word/fontTable.xml¥Û0 ï</td>
+<td>Dm´EKVÕ®º7½kû ³¶+>ilÂæíkiXU^þoÆöïñãÓ»VÉQ Öäd³NI"³\2'¿}<em>=Ä05"''áÉÓþÓcÖD¹ñf9©Bp¥UB</em>['L5ø%ÕÚ­Õ</td>
+<td>JÝ¦étMÖ!VZ2´Þ¡d¶($Ý£Wà¼Éeµ&3R*Ö<code>¯¤ó=M/¥Å</code>ÕCÿÄQ«þ¿ÆÍÉÆ¸Z]5¹CË÷qôåtÆ¶A1§¿söhfÀ´Î¸</td>
+</tr>
+<tr>
+<td>¹×1w·hgÔ8q-¼SÈ%ôC¾!àiZ,XÏk½³\</td>
+<td>CªPã<code>È%V eÁÁa03/gÙùÄ%z4©¿kg7é]~VàÄH+ÿö¶v£Ý?/¡]ÀÍû Û	</code>wàa</td>
+</tr>
+<tr>
+<td>`â}Få5Gòû8»#û~0À</td>
+<td>KøJy×ÏCÃ6å9ñµÕ¶¨m2°sC&ûîrIÌåJPNÆ_E4°"Ï¶F)°Ðî¦ÚÿPK£7</td>
+</tr>
+<p>uÄ  ë  PK  ®^Ì\               word/styles.xmlíXënâ8~}ÿ%</p>
+<tr>
+<td>hè¨¥ÙfgVÓî8!NÙ´}úµ;wØ@éj¤?ÄÇç</td>
+<td>>Ï'?}~ñh)C$YöØ2F0	HÍÒøûùËÍÌ1`À¥ñ</td>
+</tr>
+<p>ñùî·OÙñWÙHØ'lK#â<]&"6&)LÄäÐp1¤3t»Ko§#aÄ_MÇ²¦!KcG¸Q@	#k.Md½FTÚY·0y$Á.	ÏW4)ÄÂ°¥L£Åç¢ÉHì±±ÖËÒ!«d¢1.Ê</p>
+<p>SJÈ>%¢m</p>
+<p>H (-¸Ð\S{0- rí±X[%-ª©rÁðG©oÈ§¾v½ gä³n¢A,n!+¾£%!Ï"@¹Àç `la¸Éd7èÜB</p>
+<p>ØPW$e'UÖ¶Zty@</p>
+<tr>
+<td>+´ÍûÐ¾R²K+º»ç Õv íàt ¦§Ìº </td>
+<td>9Ãu3-qîÃ 8<code>[&æf¨º</code>.*·@·)÷âGi+¡K4dä</td>
+</tr>
+<p>Ù¸oü×`9CúUC5Êÿ¾a=Ê-{Èl¶Xm ã÷(ºOX©oJ(ö&Ä{ ºãhÉ5e¦ZØl»¶Gò/C!ÉVÂAJ°Æ±t</p>
+<p>ÁeéøC,×³¤[>ûCdWL¼ñ\þ\çövî¹¶ú¹Ãbì8)PQÊ¸æ%E¨­eü[j©xRO=³üüM/ øk*l9ð1x¹øAºg)ù.[JÝ°0§¼	¡N@]3wû¸HxXAÿÅ¤ÂD¼lËçÎk/ °a×ð	ç$>®ççÙtÌ,6UøÝô¤ÊF</p>
+<p>ÊNR&æTøß!'¶.dTLlÀ`ø#Ñ³õJ$ð÷ÉÓ°VÉàFòùM=1 Ü¨Ð Í²RtuÅÀBAQ6«øXæ[cµ·´j! </p>
+<p>HíC[Ú±lÔú6=ºI?¢éù­ üªã)I¦ê\¨ÒP<code>Bµl>·}ÛowT×êvT×juÔsèî¤»s¥ûKwÇñþt÷çv</code>mºOzöâºOÒ}r¥ûåèÞå¶Û8©áå©~	~ÖÎ±³sìì4tÒÐ½Òð#ièy</p>
+<p>zÔq/LC·îhè¤¡w¥á-Ú=ÝÐ¾D7¤áôJÃ¤ádÚx)«á/OÃi</p>
+<p>§ï¡á3âvïYré;ù·0ý^SQñJ±ÌX;)ØÀ</p>
+<p>Áö!¯I;íÚNóÎkv gT¤Ê÷mÏYüö]gñ§Ï{S^NüÒY</p>
+<p>Û5ÿúöºA@ÕÕ§XM¨>Æ´¤¹oìÎ¾±{>¶¦ù¯s·ÐÓ×Ý}ýÀEfqÖ<em>àÑË'iÿd 	Ðl¡5V÷jôÝ</em>ê'v÷PKN]Ñv  ¢  PK  ®^Ì\               word/document.xmlí]ÛnÛØýþ¡ÅÌ­/IÜq</p>
+<p>ÇK0±§écASG6TIÊûT£@Ñ>hÊ»²ºîC¾´ÞúýCR´nÎlÝx×"SxH.-î³÷>û¬óÕ¯ÞÕ©mf®-¥²3ÔÓd=¯hK©_¿üfúajÊ´$-/©ºÆR»ÌLýêñÏ¾ÚYÌër¹È4k· Ey)µeY¥ÅtÚ·XQ2gôÓøÝ(Jkl¦ñº\õbI²</p>
+<p>EU¬Ýt.YHùÍèK©²¡-úMLÙÐM½`CõBAÿ§uA9¯wÈSÿÝ3¦</p>
+<p>¦òkÐ5sK)­ÖÃ¶Æ?Üj5²ý©Ø.ª­ïí(gËÒÿ9ªw¢ÝÈ]f¦É÷>õ>ZÌf &#(ÐyÎÖ%Eäèj(8÷?·ÛÔíÜbaªñ>z®l±Û{Òx¶<em>RH,îjeÃ4!oIÕj@¦U</em>³ü¤mKó$:wµW¤MC*ÞÔèÍfºè²¾%Ømk£µö­¡K·t¦µ¶'0;?X¹kàao2{3\i~d{;J~°vv= 5`IækS´ð(ÝêÜ]Á#Ðkû¶Ã7Å±¢©\dIv</p>
+<p>rê1ï_6ôü®ø[ÚYäÝSþÅR<em>ãÿòw=ejïÎµÞ]/²TV­>¬;³s%Éå½Y÷bJkûçIÞýkéâªÌ$s«ç6fþÁßØø5iJ/ª¬`Ñ¾¹¡[^¤}×P6·¨Í2k1òåôíý[yþaAQù§RÙÒ¯Ê</em>¯eÑù'RÁbÆónÛ~¢YeUÑØ²ÊüÜCM4/°	¾æÞRð® ¦õ\ÑÜëõnÙûotNqNSV¥Ô^6fcd³ã-LkÙT¤[ËÙvÛ²¬«ºÑº?Þ</p>
+<p>þ¡µ7ìY1{öµAU(²\/XiÿúÓO1¸Ó;yÚ¥×Þuª1(Èß</p>
+<p>±j=%ÌØf©ÇÓÓÓSâ[@D%Gpqê¿/ëÖ/ä@¾Z]£E 8"kËß?{¹</p>
+<tr>
+<td>AÄ</td>
+<td>ñlý{8*</td>
+</tr>
+<p>y<code>èuÏðGÅÒR,E¸2KÒùh7ª]¿9q æ</code>Â:LÇ}Ö<²ü_<code>#èñâæ@Q[Æ* 	£¶Çö{»a×C@9"ÿýã0Õ&¾µkMÀ»5öµSq¸¯X³ë äÈÙäÇã6ÓD©pÇßÁÔ¤"h¤wL\^+ÑMÇGÓ,XGXÇ ¹öbumuýë§ ö18ªüò"b,ò¼F©÷¸:ê\&·0YÎæ</code>(ÇlY"ÀqdÂ!</p>
+<p>ÅRdIè·#FotÍD</p>
+<p>*F ¥ </p>
+<p>F`QÑÊ8º«8²«¨KL3]u"	ã1²h5þp½Î ½ÖLË~·À¶1bKib f¦q5ã201@píÅêËÕÕç£FðùêÊ÷("F¿6=õðüvõÕ×/~\þqåk@	1Ë+/½Çe#§;õòøkI±¦v®CS{ÝÚUYëö¾cX{"ëÝ7ô¶o9°¡äÖn[	îè¶{~Û.þ)×ÆüH&@=èäÿýõÏÇËsÆRV,>óÜc)s\x&.»\h&(\PB¥¼KÌdRÌpd;è.æY¯ðû\LwcsMaðnU¥ÉU,</p>
+<p>Ê/ãûÌb=¡IÄ7íK</p>
+<p>y¿· »M^NhÙP$µ</p>
+<p>ÞÜæ]~&À{OÎäúär]AÓØâ3±*Ýã¯¶</p>
+<tr>
+<td>&[S¦±R;JÞÚZÌÌdJÖ/·@h1;3<em>²RSúâoÀß0­</td>
+<td>°-©Ê¦Æ(¦Y"	"~C÷VR?</em>ÎÿÅúþñC</td>
+</tr>
+<p>­Ý=õÄ³7QýZÃô«ÜÝO"0AÀV LìçÐ>0 ,ÜW?µëüµx@</p>
+<p>eÞß8/=6c iúfajË&Ð¥_>ßÙç]Ò±sà¼< ÍÂÔ ¨B¡Ê¥×ÙW ¡æ?bp;½uþºÏ»%tJ}@:uú ò7ûçÐÀÒ¼ØP8(À£¤*</p>
+<p>mÉÂô-»²0 0¡- P@~]CrÐ2TÊaÀT¡QåÜ9´ß¹ÄF 2uûïNES }~UíæDLÓÊÐlL </p>
+<p>µ;:n¡;aÈ©:$é¢]ã=A¨Ü à»/03¤ã1kî'Õ+üÛÅì.âì.©`1úìyq(´,zfc&FÅürªIøñ</p>
+<p>}Aþh]Ææ Ù Þ¸åiv½'ähùKÖêÿñÛÙP;¼ÒÊ²·ýô+Å,Káô¾kg)õhv!3ãÞµ[âW#y_ùÜ:F82ÁaOt#ÏóÖòçdi^r{üngc!ð Lî ¨¬Ã;òèÀcòø5äá</p>
+<p>w¥óì»Qx5lébC}.íêe+øÊ~µçºþ:p2ÛF}k(y±¹Éÿ®èªÇ¹~LpÇnÿÀ-IÛTg¡ÉtÛé®ö;?åÞµû,iÖzIU¬¯Ï=@xò,uZbë@Kö^[ï@qv:</p>
+<p>Y!×<em>ØÐÚb$þ«fö7.>4øFpûøNëïüJºí¶öAëªù</em>ðc¿»­{qè<D5ù¯ßkúoc©,²Ñu/·ìXÒ2?i[ <öû³jÄh:9ãdÂAd"ÛWÒ=Ò·®&8L;Lpà0ÁaPñÌÞwá,MÌYªÙÿ²¯ÄÀPB¦q%fxrájk´!µÚ]¼×~doº³»b·ð@Ì®ý%i=1ôúëãt}º£äõ!þlèj÷p%>õøsó~£ÿVu=ÀÙÙùGâ¿¹Üæç²cr)û</p>
+<p>D^4B´MrúvÂ{p"Á8Å0a÷]¤FÐ=¼E~ A÷èÞê!Ýµä¨Å<DCQN,äu2ñ5±`ÝBBÍ©8{Î¾S vaÑî@H$ÛhGÄãÿ"þ{ñßx>t¿g_C</p>
+<tr>
+<td>3Çé±¶Xýé<^(</td>
+<td>Ìè1áaK5!u KôØ.SuöC!Ì;o°D$Aè1±O]¦a×N/8eúVPêÉ@J6Jk¡ßrArÕVÆY ª[è±yäì¬ûèT1 ²-£+ahÖ«$($¢ØÿY@Yö½©Í<&ªAÑ¤¡æ­Sñüä\@ZÎå8ÿ JôxåwH1ehÖåSæ</td>
+</tr>
+<p>qEòøãê¿B¼ ÏñÊNÎTeLe¸S6ºîâãa~Ø«ÜøÀÿBÀàsuîâfnáZ¹S»î$dâWü íAîrlª»Ã:bÄ"Ä »Ø=³Â"ìTíp+9YÉtÂÏ~e#oØð2¤áX­*´°ãÇ¹Uw8(C¢ÌG£hâÐè2ÙÂlKßäk²Öã	4_Ü+PhKx¬j ¥i`Ò,©ê½fT¾´ÉÑ´¯]eB@	jpx©¹tö8a B º ³ª3ïR±/í:Âh Êã"H>0tLnN > ªÐlKÝ>uö ËÂ =ÀÿA°t!Ú}Ú<B-f÷I÷hÃ</p>
+<p>&1ÜI]÷ÙäãatÓ¾}e_'";?ðàÚÅ5!</p>
+<p>å©øÁÒ</p>
+<p>ä@·0mÜ'Ü]w*¤Ëûèkv%âÒ.@Ô«¨ÿ)¢þ{õß>üåªíë¨"¡:¨¸É'"Å?3zLº0ÑcrgØx@¬</p>
+<tr>
+<td>ªf]<em>ö{8»NZ¼²úô^¡BYÃÒ·d±MôCtÅÈ=wÊÅ%ÒHó: .õD)</em>ÑcbóÀj UE6³8Ik¯2Ñç]×Ý+TÆ5+íNÒMD\óuGAÎºµ«²Ö½)d¶ébOëpB¤'S±rÇ#9þçmàÒêóÉÄÁ¼ÜÞëCl.h5)1OG:ÄvÍ¾°OoÎjó«K\P\Ùó3¡ñàÀà ná&ëÛÌØÍAÚüÀ,CÍØ°æË>¾jä^é7í^©V.zºÝ	¶ûÙ³</td>
+<td>÷</td>
+</tr>
+<tr>
+<td>Àg¬ÀÜ=»½Ì[ñ?öw·ªÎI5çöªóÙî</td>
+<td>-IÛtÛ]h=<em>1.ïÞè+úi>	JýÆ¼$$oâZhþñç"¨7¤ý^ê$DÍ=~ .íòÆùçÁ3=&buuL.Y¨Ç¥ È´$¤ m¢Ç</em>ê</td>
+</tr>
+<p>­3ÂlGf Â`!xPfÀÎ¨Â)óogÏ9 ?(C³2 ªPõp<em>b)@ºÐ{ÏKôq?~Iìf£ù!	Osü³Ïýæ³?Aµå2üó1/ÉÅÄùh_ PN¨2ÆpèÌ>÷t 3P	Àéçé×9Uç{Õ lÉÕ­ÚµçC³0Á°4J^@Z,+</em>Ñc"]¡</p>
+<p>:P, ëªÐ­Ë;þ:8DõµQd¡¨geg3e¿ÚÞôÎÒÆÄì(ìØaÅª³ K?øÐ5Æ5ûö)ýXM¤t§î¢rDáÇ>LÉF+LXSû.ÐûEipÂi³Ñü§SOÂS?ìRW?à@·aP»9ID?à@·¡¬Ûª</p>
+<tr>
+<td>è@¸ðÂâs0AññÏ<Pn¨Èí#'\ÝÙ³nM<code>öF}¤4¨=&öîª%#ºDSñ£¡zÂÐìôt@jýÍ	</code>U(Vå½;~h@Ï­TûXL»ÀÐ¬ÚcºPG+¼"¾ò. 25îòÖÝåÇÐ-4 UÆ<uTh¥×Q&ÂD	ï.øµ¿HC#ÍáÍóÖ>Î/¼hi@>°ü÷@¥sÊSèd2Ùl»AiÝÚUYë®¾cR^Ñ6ýÛbÁ'øOj@h<em>Ì1=*}ÌÝàÉ¥òâÔ5Ü{¿è8J</td>
+<td>¬!°2iE0 õ0ÅcÕÕ£x\`.&X1304</em>p)Ò¥¼Z]Íµ>ùÎ+ùVßf&i2Í%ÅÉbfl¥/ãè­çRËù7õ1/ß£>æÃÝîUë$»Òc¡çÞ¢ziJZè.L}sf×0è</td>
+</tr>
+<p>ÊÐ\øSû%ïÈmÛna0ÖØ!¡#Uhô@"U®Ä</p>
+<p>l dÁNPe</p>
+<p>g\ØÞ<Âl+FdH­Næ9ØÒ¯rõPBãBJ²`Ñ{f@û²çì"e$rAb@A¯û7wýrè".$º¼C7²0HäÎöÝj	(CN°ºpÿgétéð]\yaûBÀ¨B£</p>
+<tr>
+<td>tîAèr<em>Rt^M7àe(Ý}WÑ±áÊÛÀéih	;g</em>4ª40 ªÐº¢}í8ût¡M]ä^BiÐf]ª DAzT£M92a èB£Ë¡ýo7×</td>
+<td>.CêYÞñ×kÂBhFA\%TíL2T§g¡c]ö¡{É:ïM¯®¤ì&`£0</td>
+</tr>
+<tr>
+<td>ßFÔÊ.¤ùì'&Y.$º\zk+ÛW ¡â{nwths7víæO4 'Ìe«>uÉJèªDÌl£¢rîà}!aÍPj[êöµ}%º#X24Ê\;q÷<em>{.<em>ô`bÆab3ÑåMHÓÇÆ</td>
+<td>kâ</em>1Ç ¡Ù[Öy	¡æÌ¤h@ZqÃ0It!y0®ËZÐf]à·</em>Ô4ïßÅêB±¤i¨Îîò/¨ÀÊ¸¥0¡Â8{Þ8"Ó@ÌEUÆHwþªÈÀ0$Â@&T!çvAPDXöÞ©±iÀÊ(Ó<r<em>b@ à04sÀ»¤dwA&NEJ9ûÎÀa(AUBÐ	</em>ÔNèÒ®#IÒäêÚWbB	äX!êAÏë^p6	HÕd²åVÚ\'ÞâíÍ?s¡ØáÛ¹·­</td>
+</tr>
+<p>Ó,Þ nX¤XÞU6ÄMxÒ¥K©¹y÷Ë^</p>
+<p>¶=éNÿ/Ýé¿ÛbR^hºo</p>
+<p>ºî</p>
+<p>>ÈeZmÿX.¾Ü-1þ¡iIu{§­«N3çwÝ¼.üÿPK÷µ¬>  O¸ PK  ®^Ì\               word/_rels/document.xml.rels­MjÃ0OÐ;Ù×²ÓJMd[Ü(òøZ#!MJ}û$ÓïyóÍÖ;o±w¤ ÈrHÆÕ=µ</p>
+<blockquote>«ÝãÈj=8B#FØë4§Øõ>BQAÇìß¥¦C«cæ<Rzi\°­ôÚ|éå*Ï_ef@y)öµ°¯Õèñ?Ù®iz[gï´j1êÐ"+8É?³ÈRÈû«%"2§åÆ+ÆÙCxZ¡qÄ>U\¬9ç%!èhÒÜW5ñ²è1xpz>·7¼üPK «ëñ   ,  PK  ®^Ì\               _rels/.relsÏ;Â0àpÈ;MËjÒ!uEå Qâ¦ÍCIxôöd` ÄÀhû÷g¹ív&7ÉxÇ ©j è¤WÆiçá¸ÞIY8%fïÁ	:¾jO8\vÒdB"qÁsØSäV¤Ête2úhE.eÔ4yé¦®·4¾À?LÒ+±W</blockquote>
+<tr>
+<td>a	øíÇÑH<xyµèò_"¨13¸û¨¨zµ«Âå-ýx?PK-hÏ"±   <em>  PK  ®^Ì\               word/theme/theme1.xmlíYKoÛ6¿Øw toeÙVêuØ±Û­M$niØP¢@ÒI</td>
+<td>ÚãÃºaØma[Ø¥û4Ù:lÐ¯°¿)Î£M·­6IýþïIùòÃ¡}"$åqÛr.Ö,Dbû4ÚÖíAÿBËBRáØÇÇ¤mM´®¬øÁe¼¦Bô±\Ãm+T</em>Y³méÁ2yBbx6â"Â</td>
+</tr>
+<p>¦"°}oÄìz­¶bGÆqloFÔ#h²´Ö§Ì{¾b%Ó]/¨SdXÏIäDv@ûµ-ãó9TbX*xÐ¶jÙÇ²×/Û%SKh5º~ö)è</p>
+<p>¯Ñ<code>X:ýæê¥Í=ç¿ëõzÝSòË ØóÀRgÛì·Î§Ê¼»5·Ö¬â5þüj§ÓqW+øÆß\À·j+ÍzßáÝEý;ÝîJïÎð+øþ¥ÕfBFã½tÏ22%dÄÙ5#¼ðÖ4f([Ë®>VËr-Â÷¸è .V4Fjö ×ÅMà5µ'ù'RYHz&ªm}</code>¨äå³<em>>{î?=ºÿËÑG÷6P]Ãq S½øþ¿}þzòÝ</em>ñRÇÿþÓg¿ýú¥¨tàó¯ÿñôñóo>ÿóøÀC> è&9@;<ÃÈPbbªSlÄÄ1Niè</p>
+<p>+èÌ°×!UÞÐLÀ«ã{wC1VÔ ¼Fàç¬ÃÑ¦ë©,Ýã80c·ñ¾Ivw.¾½q¹LM,»!©¨¹Í ä8 1Q(}Æ÷1Ý¥´â×-ê	.ùH¡»u05ºd@ÊLtFIAwÅ7[wP3ûM²_EBU`fbIXÅWñXáÈ¨1¼UhRrw"¼Ã¥HqÔó&[bRQ÷:´sØ·Ø$ª"¢{&ä</p>
+<tr>
+<td>Ì¹Üä{ÝGQg:ö#¹)Ñ6WF%xµBÒ9ÄÇKÃ}u¶Ú¾MÐ é±0áÕz°&qÑá+½:¢ñq;¾Ï»qC«</td>
+<td>þí£ÿQËÞ 'jf¾Q/ÃÍ·ç.>}û»ó&ÇÛ</td>
+</tr>
+<p>â}s~ßßÅæ¼¬Ï¿%Ïº°­´36ÑÒS÷2¶«&ÜYÿ<code>ßÅlü$a!®ÎÆHpõ	UánãdY°$J¸«µwv?¥</code>s¶æN/ÆjûùrC¿ll²Y uAÁi5.½0'Rã¥¹ÇJ³5oBÝ ¾JpVê¹hHÌú=g0</p>
+<p>ËSÓbb5ûÆñ¦{&%ÎÇÉµ'ÛÕÄâê´­U·îZÈÃIÛÁi	QüdÚi0â¶å©ÜÀkqÎâUsV95wÁjË0§ÊM<em>¥Ä3ýën3õÃù`h&§Ó¢ÑrþC-ìùÐÑxjÉÊlZ<ãcEÄnè !z7óìò©N</em>Näv³H¼jáµ1ÿÊ¦¨ÌÙÞÒbÃ³q©C6ÓÔ³èþ¦4ÎÑ÷Ý5%Í\86üìÒ»¸À(ÍÑ¶Å</p>
+<p>9t¡$¤^_À¾É½EªbéèTW²?ë[9¼É¡Ú¡:</p>
+<p>!Ûª°ófN]ß§>Sª+üwHö	¤Õ»Úo¡pÚM</p>
+<tr>
+<td>Gd¸ù Ù¦êý·øàÒ</td>
+<td>¥g&¨yÍ¯©5}m+X}=N³kâêfëîÒg~«MàÒ/hÜTxlv<ð>*÷yx¡U<em>¹8[q)«ëÔZïó<;jÎn,qöñâ^ÝÙ®Á×îñ®¶KÔÖî!Ùlá(>¼²7áz3fùL`¶EfðûbÈdÞrGL[:wÈQÿpÖ9ÿôùN. µ½$lLXàgHI\?¸¤ÞñJâìgbÀfs</td>
+<td>å²Ebñë¸ìÊ]fÌÞÓºìz©Ãã]VxÊ6%9Tw§]AþÚ³]ÿPK!Z¢,  Û  PK  ®^Ì\               [Content</em>Types].xmlµMNÃ0OÀ"oQãB¨i@À¢Àµ'­ÿäööLÒ6UMdçÍ¼÷-y:ßyWl!£¡r,</td>
+</tr>
+<p>:Öx[.Fw¢@RÁ(Tb(æ³«ér nX</p>
+<p>Qºõ¼Â2&¬Ô1{E¼Ík~Wk7ãñ­Ô1Që!fÓG¨Uã¨x8üo­+¡RrV+b.Éf¢xÚ±xÀl÷ò}Û<code>Î</code>F±®­uã¹¥«ºA®³`/!ÑÕ¿9Î[fp]</p>
+<tr>
+<td>nlÂëó9XÅ6á/ [ä#frÔÈwç]@Ä«cê«Êô¬<ÛÊ¶RÔòxÃ ÐÞÁw 6h</td>
+<td>Í^Kµrp <em>Aæõe^¢W¼²á2H</em>òÄïÁ7ßIïä)»Geö	PKk4´ß?    PK   ®^Ì\Py÷N  Q,                   word/numbering.xmlPK   ®^Ì\µB^7O  h                 word/settings.xmlPK   ®^Ì\£7</td>
+</tr>
+<p>uÄ  ë                 word/fontTable.xmlPK   ®^Ì\N]Ñv  ¢                  word/styles.xmlPK   ®^Ì\÷µ¬>  O¸              Ó  word/document.xmlPK   ®^Ì\ «ëñ   ,               P!  word/<em>rels/document.xml.relsPK   ®^Ì\-hÏ"±   *               "  </em>rels/.relsPK   ®^Ì\!Z¢,  Û               u#  word/theme/theme1.xmlPK   ®^Ì\k4´ß?                 ä)  [Content_Types].xmlPK    	 	 B  d+    </p>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Toggle navigation sections
+        document.querySelectorAll('.nav-section-title').forEach(title => {
+            title.addEventListener('click', function() {
+                const links = this.nextElementSibling;
+                if (links.style.display === 'none' || links.style.display === '') {
+                    links.style.display = 'block';
+                    this.querySelector('.toggle-icon').textContent = '−';
+                } else {
+                    links.style.display = 'none';
+                    this.querySelector('.toggle-icon').textContent = '+';
+                }
+            });
+        });
+        
+        // Set active nav link based on current URL
+        const currentPath = window.location.pathname.split('/').pop();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPath || 
+                link.textContent.includes(currentPath.replace('.html', ''))) {
+                link.classList.add('active');
+            }
+        });
+        
+        // Auto-refresh every 30 seconds if in watch mode
+        if (window.location.search.includes('watch=true')) {
+            setTimeout(() => {
+                window.location.reload();
+            }, 30000);
+        }
+    </script>
+</body>
+</html>
